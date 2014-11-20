@@ -231,16 +231,23 @@
 {
 	if (page != currentPage) // Only if on different page
 	{
-		if ((page < minimumPage) || (page > maximumPage)) return;
+        if ((page < minimumPage) || (page > maximumPage))
+        {
+            return;
+        }
 
 		currentPage = page; document.pageNumber = [NSNumber numberWithInteger:page];
 
 		CGPoint contentOffset = CGPointMake((theScrollView.bounds.size.width * (page - 1)), 0.0f);
 
 		if (CGPointEqualToPoint(theScrollView.contentOffset, contentOffset) == true)
+        {
 			[self layoutContentViews:theScrollView];
-		else
-			[theScrollView setContentOffset:contentOffset];
+        }
+        else
+        {
+            [theScrollView setContentOffset:contentOffset];
+        }
 
 		[contentViews enumerateKeysAndObjectsUsingBlock: // Enumerate content views
 			^(NSNumber *key, ReaderContentView *contentView, BOOL *stop)
@@ -250,7 +257,6 @@
 		];
 
 		[mainToolbar setBookmarkState:[document.bookmarks containsIndex:page]];
-
 		[mainPagebar updatePagebar]; // Update page bar
 	}
 }

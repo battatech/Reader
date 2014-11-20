@@ -340,12 +340,19 @@
 
 		_lastOpen = [decoder decodeObjectForKey:@"LastOpen"];
 
-		if (_guid == nil) _guid = [ReaderDocument GUID];
+		if (_guid == nil)
+        {
+            _guid = [ReaderDocument GUID];
+        }
 
 		if (_bookmarks != nil)
+        {
 			_bookmarks = [_bookmarks mutableCopy];
+        }
 		else
+        {
 			_bookmarks = [NSMutableIndexSet new];
+        }
 	}
 
 	return self;
